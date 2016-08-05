@@ -136,10 +136,12 @@ module ActiveModel
 
       def serializer_options(subject, parent_serializer_options, reflection_options)
         serializer = reflection_options.fetch(:serializer, nil)
+        root = reflection_options.fetch(:root, false)
 
         serializer_options = parent_serializer_options.except(:serializer)
         serializer_options[:serializer] = serializer if serializer
         serializer_options[:serializer_context_class] = subject.class
+        serializer_options[:root] = root if root
         serializer_options
       end
     end
